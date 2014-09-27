@@ -14,10 +14,12 @@
     "url": "https://github.com/nodejitsu/browsenpm.org"
   },
   "dependencies": {
-    "express": "^4.9.5"
+    "express": "^4.9.5",
   },
   "devDependencies": {
+    "chai": "^1.9.1",
     "mocha": "^1.21.4"
+    "zombie": "^2.0.4"
   },
   "scripts": {
     "start": "node chitter.js",
