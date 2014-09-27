@@ -1,10 +1,10 @@
-express = require('express')
-chitter = require('http').Server(express)
+var app = require('express')()
+var server = require('http').Server(app)
 
-var port = process.env.port || 3000
+app.set('view engine', 'jade')
 
-var server = chitter.listen(port, function() {
-    console.log("Chitter server started on port " + port)
-})
+app.get('/', function (request, response) {
+    response.send("<h1>THIS IS THE RESPONSE</h1>")
+});
 
 module.exports = server
