@@ -15,5 +15,9 @@
 },
   "dependencies": {
     "express": "^4.9.5"
+  },
+  "scripts": {
+      "start": "node chitter.js",
+      "test": "mocha"
   }
 }
