@@ -1,0 +1,10 @@
+{
+  "name": "chitter",
+  "version": "0.0.1",
+  "description": "An example implementation of a Twitter clone",
+  "author": "David Wickes <dave.wickes@gmail.com>",
+  "contributors": [{
+  "name": "David Wickes",
+  "email": "dave.wickes@gmail.com"
+    }]
+}
