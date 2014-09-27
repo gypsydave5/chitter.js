@@ -14,11 +14,14 @@
     "url": "https://github.com/nodejitsu/browsenpm.org"
   },
   "dependencies": {
-    "express": "^4.9.5",
-    "mocha": "^1.21.4"
+    "express": "^4.9.5"
   },
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  }
   "scripts": {
     "start": "node chitter.js",
     "test": "mocha"
-  }
+  },
+  "license": "MIT"
 }
