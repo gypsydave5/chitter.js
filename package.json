@@ -9,15 +9,16 @@
       "email": "dave.wickes@gmail.com"
     }
   ],
- "repository": {
-  "type": "git",
-  "url": "https://github.com/nodejitsu/browsenpm.org"
-},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nodejitsu/browsenpm.org"
+  },
   "dependencies": {
-    "express": "^4.9.5"
+    "express": "^4.9.5",
+    "mocha": "^1.21.4"
   },
   "scripts": {
-      "start": "node chitter.js",
-      "test": "mocha"
+    "start": "node chitter.js",
+    "test": "mocha"
   }
 }
