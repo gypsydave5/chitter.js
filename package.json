@@ -14,7 +14,8 @@
     "url": "https://github.com/nodejitsu/browsenpm.org"
   },
   "dependencies": {
-    "express": "^4.9.5"
+    "express": "^4.9.5",
+    "jade": "^1.7.0"
   },
   "devDependencies": {
     "chai": "^1.9.1",
@@ -22,7 +23,7 @@
     "zombie": "^2.0.4"
   },
   "scripts": {
-    "start": "node chitter.js",
+    "start": "node start.js",
     "test": "mocha"
   },
   "license": "MIT"
