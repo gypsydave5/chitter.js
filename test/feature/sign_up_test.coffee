@@ -26,5 +26,5 @@ describe 'the sign up page', ->
         fill("password_confirmation", "thisismyboomstick").
         pressButton("submit").
         then ->
-          expect(browser.text('#username')).to.eq "Hi ash"
           expect(browser.location.pathname).to.eq "/"
+          expect(browser.text('#username')).to.eq "Hi ash"
