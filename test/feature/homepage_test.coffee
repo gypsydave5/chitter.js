@@ -17,3 +17,5 @@ describe 'the homepage', ->
     it "Has the word 'Chitter' as a title", ->
         expect(browser.text('h1')).to.eq "Chitter"
 
+    it "Has a log in buton", ->
+        expect(browser.text('button#log_in')).to.eq "Log in"
