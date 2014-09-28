@@ -11,5 +11,4 @@ app.set('view engine', 'jade')
 app.use('/', home)
 app.use('/user', user)
 
-
 module.exports = server

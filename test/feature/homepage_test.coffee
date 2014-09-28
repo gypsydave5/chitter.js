@@ -25,7 +25,6 @@ describe 'the homepage', ->
 
   it "The log in button takes you to the log in page", ->
     browser.clickLink 'a#log_in'
-    #console.log browser.location.pathname
     expect(browser.location.pathname).to.eq "/session/new"
 
   it "The sign up button takes you to the sign up page", ->
