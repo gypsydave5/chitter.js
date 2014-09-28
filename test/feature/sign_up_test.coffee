@@ -21,9 +21,10 @@ describe 'the sign up page', ->
 
     it "Signing up to Chitter", ->
       browser.fill("username", "ash").
-        fill("email_address", "ash@evildead.com").
+        fill("email", "ash@evildead.com").
         fill("password", "thisismyboomstick").
-        fill("password_confimation", "thisismyboomstick").
-        pressButton "submit", ->
-          expect(browser.location.pathname).to.eq "/user/new"
+        fill("password_confirmation", "thisismyboomstick").
+        pressButton("submit").
+        then ->
           expect(browser.text('#username')).to.eq "Hi ash"
+          expect(browser.location.pathname).to.eq "/"
