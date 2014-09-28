@@ -1,5 +1,5 @@
 require('coffee-script/register')
-chitter = require('./chitter')
+chitter = require('./app/chitter')
 
 var port = process.env.port || 3000
 

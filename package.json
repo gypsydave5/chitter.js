@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "node start.js",
-    "test": "mocha"
+    "test": "mocha --compilers coffee:coffee-script/register"
   },
   "license": "MIT"
 }
