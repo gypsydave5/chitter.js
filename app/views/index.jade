@@ -1,7 +1,5 @@
-doctype html
-html(lang="en")
-  head
-  body
-    h1 Chitter
-    a#log_in(href="/session/new") Log in
-    a#sign_up(href="/user/new") Sign up
+extends ./layout.jade
+
+block content
+  a#log_in(href="/session/new") Log in
+  a#sign_up(href="/user/new") Sign up
