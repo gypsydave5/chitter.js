@@ -17,7 +17,11 @@
     "body-parser": "^1.9.0",
     "express": "^4.9.5",
     "express-session": "^1.8.2",
-    "jade": "^1.7.0"
+    "jade": "^1.7.0",
+    "lodash": "^2.4.1",
+    "mongoose": "^3.8.17",
+    "pg": "^3.4.5",
+    "sequelize": "^2.0.0-rc1"
   },
   "devDependencies": {
     "chai": "^1.9.1",
