@@ -1,6 +1,6 @@
 app = require('express')()
 server = require('http').Server(app)
-require './model/db'
+require './model/db.coffee'
 bodyParser = require 'body-parser'
 
 session = require 'express-session'

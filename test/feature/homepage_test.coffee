@@ -1,18 +1,27 @@
 process.env.NODE_ENV = 'test'
 expect = require('chai').expect
 server = require('../../start')
+mongoose = require 'mongoose'
 Browser = require('zombie')
 
 describe 'the homepage', ->
-  browser = null;
+  browser = null
 
-  before ->
+  before (done) ->
     browser = new Browser {
       site: 'http://localhost:3000'
     }
+    mongoose.connection.db.executeDbCommand { dropDatabase:1  }, (err, result) ->
+      mongoose.connection.close done
 
   beforeEach (done) ->
-    browser.visit '/', done
+    browser.visit '/', ->
+      mongoose.connect 'mongodb://localhost/chitter-test', done
+
+  afterEach (done) ->
+    mongoose.connection.db.executeDbCommand { dropDatabase:1  }, (err, result) ->
+      mongoose.connection.close done
+
 
   it "Has the word 'Chitter' as a title", ->
     expect(browser.text('h1')).to.eq "Chitter"
