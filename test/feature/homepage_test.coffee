@@ -7,21 +7,16 @@ Browser = require('zombie')
 describe 'the homepage', ->
   browser = null
 
-  before (done) ->
+  before ->
     browser = new Browser {
       site: 'http://localhost:3000'
     }
-    mongoose.connection.db.executeDbCommand { dropDatabase:1  }, (err, result) ->
-      mongoose.connection.close done
 
   beforeEach (done) ->
-    browser.visit '/', ->
-      mongoose.connect 'mongodb://localhost/chitter-test', done
+    browser.visit '/', done
 
-  afterEach (done) ->
-    mongoose.connection.db.executeDbCommand { dropDatabase:1  }, (err, result) ->
-      mongoose.connection.close done
-
+  after (done) ->
+    mongoose.connection.db.executeDbCommand { dropDatabase: 1 }, done
 
   it "Has the word 'Chitter' as a title", ->
     expect(browser.text('h1')).to.eq "Chitter"

@@ -1,6 +1,7 @@
 process.env.NODE_ENV = 'test'
 expect = require('chai').expect
 server = require('../../start')
+mongoose = require 'mongoose'
 Browser = require('zombie')
 
 describe 'the sign up page', ->
@@ -13,6 +14,9 @@ describe 'the sign up page', ->
 
   beforeEach (done) ->
     browser.visit '/user/new', done
+
+  after (done) ->
+    mongoose.connection.db.executeDbCommand { dropDatabase: 1 }, done
 
   it "Has 'Chitter' as a title", ->
     expect(browser.text('h1')).to.eq "Chitter"

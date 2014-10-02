@@ -1,28 +1,22 @@
 process.env.NODE_ENV = 'test'
 expect = require('chai').expect
 mongoose = require 'mongoose'
+server = require('../start')
 User = require '../app/model/user'
 
 describe 'User', ->
 
-  beforeEach (done) ->
-    mongoose.connect 'mongodb://localhost/chitter-test', done
-
   afterEach (done) ->
-    mongoose.connection.db.executeDbCommand { dropDatabase:1  }, (err, result) ->
-      mongoose.connection.close done
+    mongoose.connection.db.executeDbCommand { dropDatabase: 1 }, done
 
   it 'starts with no users', ->
     User.find {}, (error, users)->
       expect(users).to.eq []
-      done
 
   it 'can add a new user', ->
     User.create {username: "bob", password: "pisswird"}, (error, user) ->
       User.find {}, (error, users) ->
-        console.log(users.length)
         expect(users.length).to.be 1
-        done
 
       #expect(user.length).to.eq 1
 
