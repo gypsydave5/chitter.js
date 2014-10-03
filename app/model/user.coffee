@@ -1,11 +1,14 @@
 mongoose = require 'mongoose'
 mongoose.set('debug', true)
 
-userSchema = mongoose.Schema {
-  username: String
-  password: String
+schema = new mongoose.Schema {
+  username: {type: String, required: true}
+  password: {type: String, required: true}
 }
 
-User = mongoose.model("User", userSchema)
+schema.statics.new_user = (username, password, callback) ->
+  new @ {username: username, password: password}, callback
 
-module.exports = User
+user = mongoose.model "User", schema
+
+module.exports = mongoose.model "User", schema
