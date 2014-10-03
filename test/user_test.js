@@ -21,8 +21,8 @@ describe('User using JS', function() {
       password: "pisswird"
     }, function(error, user) {
       User.find({}, function(error, users) {
-        //should.not.exist(error);
-        //expect(users.length).to.be(1);
+        should.not.exist(error);
+        expect(users.length).to.be(1);
         done();
       });
     });
@@ -34,9 +34,9 @@ describe('User using JS', function() {
       password: "pisswird"
     });
     user.save(function(error, user) {
-      //should.exist(error);
-      //console.log(error);
-      //expect(error.message).to.eq("");
+      should.exist(error);
+      console.log(error);
+      expect(error.message).to.eq("");
       done();
     });
   });
