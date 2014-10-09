@@ -1,14 +1,14 @@
 mongoose = require 'mongoose'
-mongoose.set('debug', true)
+uniqueValidator = require 'mongoose-unique-validator'
+#mongoose.set 'debug', true
 
-schema = new mongoose.Schema {
-  username: {type: String, required: true}
+userSchema = new mongoose.Schema {
+  username: {type: String, required: true, unique: true}
   password: {type: String, required: true}
 }
 
-schema.statics.new_user = (username, password, callback) ->
-  new @ {username: username, password: password}, callback
+userSchema.plugin(uniqueValidator)
 
-user = mongoose.model "User", schema
+User = mongoose.model "User", userSchema
 
-module.exports = mongoose.model "User", schema
+module.exports = mongoose.model "User", userSchema
