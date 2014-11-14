@@ -20,7 +20,7 @@ describe 'The User model', ->
     catch error
       done error
 
-  it 'starts with no users', ->
+  it 'starts with no users', (done)->
     User.count {}, (error, count)->
       check done, ->
         expect(count).to.eql 0
@@ -28,7 +28,7 @@ describe 'The User model', ->
   it 'does not save when there is no username', (done) ->
     user = new User {username: "user" }
     user.save (error, saved_user) ->
-      User.count({}, (error,count)->
+      User.count({}, (error, count)->
         check done, ->
           expect(count).to.eql 0
       )
@@ -66,63 +66,3 @@ describe 'The User model', ->
         check done, ->
           expect(result[0].password).to.not.eql "12345678"
 
-
-
-
-    #user.new_user "erik", "paaassssword", done()
-    #user.new_user "Dave", "password", done()
-
-    #user.count {}, (error, count) ->
-      #expect(count).to.eql 1
-
-    #expect(user.count( {}, (e,c) ->
-      #done()
-    #)).to.eql 1
-
-    #user.count( {}, (e,c)->
-      #expect(c).to.eql 2
-      #done()
-    #)
-
-
-    #expect(user.new_user "erik", "thedog", ->
-      #user.new_user "erik", "bobobob", ->
-        #user.count {}, (error, count)->
-          #done(count)
-    #).to.eql 1
-
-  #it 'can add a new user', ->
-    #user.create {username: "bob", password: "pisswird"}, ->
-      #user.find({}, (error, users)->
-        #console.log(users)
-        #lenny = users.length
-        #console.log(lenny)
-      #)
-
-  #it 'can add a two new users', ->
-    #User.create {username: "bob", password: "pisswird"}, ->
-      #User.create {username: "harry", password: "pisswird"}, ->
-        #User.find {}, (error, users)->
-          #expect(users.length).to.be 1
-          #console.log(users)
-
-  #it 'must have a username', ->
-    #user = new User {password: "pisswird"}
-    #user.save (error, user)->
-      #should.exist(error)
-      #expect(error.message).to.eq ""
-
-      #expect(user.length).to.eq 1
-
-  #it 'increases the user count by one when a user is created', ->
-    #User.count {}, (error, count)->
-      #count.should.equal 5
-
-    #bob = new User({username: "bob", password: "passswird"})
-    #bob.save
-
-    #User.count {}, (error, count)->
-      #if error
-        #console.log("FAIL")
-
-      #expect(count).to.be 5
