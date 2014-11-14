@@ -13,11 +13,13 @@ userSchema.plugin(uniqueValidator)
 
 User = mongoose.model "User", userSchema
 
+User.prototype.validate_password = (password, callback)->
+  bcrypt.compareSync(password, @password)
 
-User.prototype._real_save = User.prototype.save
+User.prototype._realSave = User.prototype.save
 User.prototype.save = (callback)->
   @password = bcrypt.hashSync @password, 10
-  this._real_save (error, saved_user)->
+  this._realSave (error, saved_user)->
     callback(error, saved_user)
 
 module.exports = User

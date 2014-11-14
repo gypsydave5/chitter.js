@@ -66,3 +66,9 @@ describe 'The User model', ->
         check done, ->
           expect(result[0].password).to.not.eql "12345678"
 
+  it 'validates the password of a valid user', (done) ->
+    user = new User {username: "yvette", password: "12345678"}
+    user.save (save_error, saved_user) ->
+      done(save_error) if save_error
+      check done, ->
+        expect(saved_user.validate_password "12345678").to.equal true
