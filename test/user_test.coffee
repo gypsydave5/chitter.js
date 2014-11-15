@@ -1,10 +1,8 @@
 process.env.NODE_ENV = 'test'
 mongoose = require 'mongoose'
 User = require '../app/model/user'
-#require 'mocha-mongoose'
 chai = require('chai')
 expect = chai.expect
-should = chai.should
 dbURI = 'mongodb://localhost/chitter-test'
 
 describe 'The User model', ->
@@ -72,3 +70,4 @@ describe 'The User model', ->
       done(save_error) if save_error
       check done, ->
         expect(saved_user.validate_password "12345678").to.equal true
+
