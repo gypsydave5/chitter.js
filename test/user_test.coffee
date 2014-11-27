@@ -66,8 +66,9 @@ describe 'The User model', ->
 
   it 'validates the password of a valid user', (done) ->
     user = new User {username: "yvette", password: "12345678"}
-    user.save (save_error, saved_user) ->
-      done(save_error) if save_error
-      check done, ->
-        expect(saved_user.validate_password "12345678").to.equal true
+    user.save (error) ->
+      done(error) if error
+      User.validatePassword "yvette", "12345678", (error, result)->
+        check done, ->
+          expect(result).to.equal true
 

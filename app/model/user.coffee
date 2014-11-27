@@ -1,6 +1,5 @@
 mongoose = require 'mongoose'
 uniqueValidator = require 'mongoose-unique-validator'
-#mongoose.set 'debug', true
 bcrypt = require 'bcrypt'
 
 
@@ -13,8 +12,10 @@ userSchema.plugin(uniqueValidator)
 
 User = mongoose.model "User", userSchema
 
-User.prototype.validate_password = (password, callback)->
-  bcrypt.compareSync(password, @password)
+User.validatePassword = (username, password, callback)->
+  @find {username: username}, (error, user)->
+    bcrypt.compare password, user[0].password, (error, result)->
+      callback(error, result)
 
 User.prototype._realSave = User.prototype.save
 User.prototype.save = (callback)->
