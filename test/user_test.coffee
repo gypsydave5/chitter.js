@@ -25,21 +25,19 @@ describe 'The User model', ->
 
   it 'does not validate when there is no username', (done) ->
     user = new User {username: "user" }
-    user.validate (error, saved_user) ->
+    user.validate (error) ->
       check done, ->
         expect(error.name).to.eql "ValidationError"
 
   it 'does not save when there is no password', (done) ->
     user = new User {password: "pisswird"}
-    user.save (save_error, saved_user) ->
-      User.count({}, (error,count)->
-        check done, ->
-          expect(save_error.message).to.eql "Validation failed"
-          expect(count).to.eql 0
-      )
+    user.validate (error) ->
+      check done, ->
+        expect(error.name).to.eql "ValidationError"
 
   it 'saves users', (done) ->
     user = new User {username: "bob", password: "pisswird"}
+    #Leaving the full method below in place as an example
     user.save (error, saved_user) ->
       try
         expect( saved_user.username ).to.eql "bob"
@@ -49,11 +47,9 @@ describe 'The User model', ->
 
   it 'cannot have two users with the same username', (done) ->
     user = new User {username: "bob", password: "rogolo"}
-    user.save (save_error, saved_user) ->
-      User.count {}, (error, count)->
-        check done, ->
-          expect(save_error.errors.username.message).to.eql "Error, expected `username` to be unique. Value: `bob`"
-          expect(count).to.eql 1
+    user.validate (error) ->
+      check done, ->
+        expect(error.name).to.eql "ValidationError"
 
   it 'hashes the password of a user', (done) ->
     user = new User {username: "derek", password: "12345678"}
@@ -64,11 +60,6 @@ describe 'The User model', ->
 
   it 'validates the password of a valid user', (done) ->
     user = new User {username: "yvette", password: "12345678"}
-    user.validate (error)->
-      if error
-        console.log error
-      else
-        console.log "win!"
     user.save (error) ->
       done(error) if error
       User.validatePassword "yvette", "12345678", (error, result)->
