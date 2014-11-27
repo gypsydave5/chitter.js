@@ -38,9 +38,10 @@ describe 'The User model', ->
   it 'saves users', (done) ->
     user = new User {username: "bob", password: "pisswird"}
     #Leaving the full method below in place as an example
-    user.save (error, saved_user) ->
+    # -- mainly to myself.
+    user.save (error, user) ->
       try
-        expect( saved_user.username ).to.eql "bob"
+        expect( user.username ).to.eql "bob"
         done()
       catch error
         done(error)
@@ -53,7 +54,7 @@ describe 'The User model', ->
 
   it 'hashes the password of a user', (done) ->
     user = new User {username: "derek", password: "12345678"}
-    user.save (save_error, saved_user) ->
+    user.save ->
       User.find {username: "derek"}, (error, result)->
         check done, ->
           expect(result[0].password).to.not.eql "12345678"
@@ -65,4 +66,3 @@ describe 'The User model', ->
       User.validatePassword "yvette", "12345678", (error, result)->
         check done, ->
           expect(result).to.equal true
-

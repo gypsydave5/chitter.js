@@ -2,7 +2,6 @@ mongoose = require 'mongoose'
 uniqueValidator = require 'mongoose-unique-validator'
 bcrypt = require 'bcrypt'
 
-
 userSchema = new mongoose.Schema {
   username: {type: String, required: true, unique: true}
   password: {type: String, required: true}

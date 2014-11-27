@@ -23,7 +23,7 @@ describe 'the sign up page', ->
 
   context "submitting a form", ->
 
-    it "Signing up to Chitter", ->
+    it "signs up to Chitter", ->
       browser.fill("username", "ash").
         fill("email", "ash@evildead.com").
         fill("password", "thisismyboomstick").
@@ -32,3 +32,12 @@ describe 'the sign up page', ->
         then ->
           expect(browser.location.pathname).to.eq "/"
           expect(browser.text('#username')).to.eq "Hi ash"
+
+    it "doesn't sign up when there's no user name", ->
+      browser.fill("username", "ash").
+        fill("email", "ash@evildead.com").
+        fill("password", "thisismyboomstick").
+        fill("password_confirmation", "thisismyboomstick").
+        pressButton("submit").
+        then ->
+          expect(browser.location.pathname).to.eq "/user/new"
