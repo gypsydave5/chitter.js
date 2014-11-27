@@ -23,13 +23,11 @@ describe 'The User model', ->
       check done, ->
         expect(count).to.eql 0
 
-  it 'does not save when there is no username', (done) ->
+  it 'does not validate when there is no username', (done) ->
     user = new User {username: "user" }
-    user.save (error, saved_user) ->
-      User.count({}, (error, count)->
-        check done, ->
-          expect(count).to.eql 0
-      )
+    user.validate (error, saved_user) ->
+      check done, ->
+        expect(error.name).to.eql "ValidationError"
 
   it 'does not save when there is no password', (done) ->
     user = new User {password: "pisswird"}
@@ -66,6 +64,11 @@ describe 'The User model', ->
 
   it 'validates the password of a valid user', (done) ->
     user = new User {username: "yvette", password: "12345678"}
+    user.validate (error)->
+      if error
+        console.log error
+      else
+        console.log "win!"
     user.save (error) ->
       done(error) if error
       User.validatePassword "yvette", "12345678", (error, result)->
