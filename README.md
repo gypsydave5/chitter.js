@@ -83,6 +83,7 @@ $ npm test
 [Git]: http://git-scm.com/
 [Haml]: http://haml.info/
 [HTML]: https://developer.mozilla.org/en-US/docs/Web/HTML
+[Jade]: http://jade-lang.com/
 [Mailgun]: https://github.com/bkeepers/dotenv
 [PostgreSQL]: http://www.postgresql.org/
 [rack flash]: https://github.com/nakajima/rack-flash
